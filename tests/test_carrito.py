@@ -31,10 +31,11 @@ def test_carrito():
         carrito = driver.find_element(By.CLASS_NAME, "shopping_cart_link")
         carrito.click()
 
+        # verificamos que entramos al carrito
+        assert "cart.html" in driver.current_url
+
         # verificamos que este la mochila
-        producto = driver.find_element(By.CLASS_NAME, "inventory_item_name")
-        assert producto.text == "Sauce Labs Backpack"
+        assert driver.find_element(By.CLASS_NAME, "inventory_item_name").text == "Sauce Labs Backpack"
 
     finally:
-        # cerramos el navegador
         driver.quit()
